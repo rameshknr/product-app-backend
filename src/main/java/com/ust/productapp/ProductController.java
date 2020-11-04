@@ -32,11 +32,11 @@ public class ProductController {
 	
 
 	@GetMapping("/")
-	public List<Product> fetchAllEmployee(){
+	public List<Product> fetchAllProduct(){
 		return productService.fetchAllProducts();
 	}	
 	@PostMapping("/")
-	public ResponseEntity<Void> addEmployee(@RequestBody Product input){
+	public ResponseEntity<Void> addProduct(@RequestBody Product input){
 		System.out.println(input);
 		if(productService.findByName(input.productName)){
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
@@ -46,7 +46,7 @@ public class ProductController {
 		 return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	@PutMapping("/")
-	public ResponseEntity<String> updateEmployee(@RequestBody Product input){
+	public ResponseEntity<String> updateProduct(@RequestBody Product input){
 		System.out.println(input);
 		ResponseEntity<String> re = null;
 		try{
@@ -59,7 +59,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Product> fetchEmployee(@PathVariable("id")int id){
+	public ResponseEntity<Product> fetchProduct(@PathVariable("id")int id){
 		System.out.println("In Fetch employee: " + id);
 		ResponseEntity<Product> re = null; 
 		Product product = productService.findProductById(id);
@@ -76,7 +76,7 @@ public class ProductController {
 	@RequestMapping(path="/{id}", method=RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	@ExceptionHandler({EmptyResultDataAccessException.class})
-	public ResponseEntity<String> deleteEmployee(@PathVariable("id") int id){
+	public ResponseEntity<String> deleteProduct(@PathVariable("id") int id){
 		
 		ResponseEntity<String> re = null;
 		try{
